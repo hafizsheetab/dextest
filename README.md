@@ -5,7 +5,7 @@ that is my contract cus
 for minting purpose only the owner of the contract can call that method
 in the config folder there are information about the owner(the keypair)
 it has 3 APIs
-# /api/aeternity/balance/:publicKey
+# api/aeternity/balance/:publicKey
 that checks the balance
 # api/aeternity/mint
 which mints and responds an event
