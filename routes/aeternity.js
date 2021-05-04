@@ -8,7 +8,6 @@ const getSdkInstance = require("../SDKInstance/node");
 
 router.get("/", async (req, res) => {
   try {
-    
     res.json(Crypto.generateKeyPair())
   } catch (err) {
     console.log(err);
@@ -25,10 +24,8 @@ router.put('/mint', async(req, res) => {
     const {address, amount} = req.body
      //getting the SDK Instance
      const Chain = await getSdkInstance()
-
      //getting the contract code
      const FUNGIBLE_TOKEN = fs.readFileSync('./contracts/Aeternity/FungibleToken.aes','utf-8')
- 
      // create a contract instance
      const contractInstance = await Chain.getContractInstance(FUNGIBLE_TOKEN, {contractAddress});
      // call your function
@@ -58,14 +55,11 @@ router.put('/mint', async(req, res) => {
 
 
 
-
 router.get('/balance/:publicAddress', async(req, res) => {
   const{publicAddress} = req.params
   const Chain = await getSdkInstance()
-
   //getting the contract code
   const FUNGIBLE_TOKEN = fs.readFileSync('./contracts/Aeternity/FungibleToken.aes','utf-8')
-
   // create a contract instance
   const contractInstance = await Chain.getContractInstance(FUNGIBLE_TOKEN, {contractAddress});
   // call your function
@@ -86,6 +80,7 @@ router.get('/balance/:publicAddress', async(req, res) => {
 
 
 
+
 router.put('/burn', async(req, res) => {
   const {publicKey, secretKey,amount} = req.body
   const keypair = {
@@ -93,10 +88,8 @@ router.put('/burn', async(req, res) => {
     secretKey
   }
   const Chain = await getSdkInstance()
-
   //getting the contract code
   const FUNGIBLE_TOKEN = fs.readFileSync('./contracts/Aeternity/FungibleToken.aes','utf-8')
-
   // create a contract instance
   const contractInstance = await Chain.getContractInstance(FUNGIBLE_TOKEN, {contractAddress});
   console.log('adding memory account')
@@ -118,4 +111,5 @@ router.put('/burn', async(req, res) => {
    res.json({msg: 'sorry'})
  }
 })
+
 module.exports = router;
